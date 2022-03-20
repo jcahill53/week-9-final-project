@@ -11,13 +11,29 @@
 
 <body>
     <main>
-        <h1>Find your favorite Superhero!</h1>
+
         <div id="container">
 
+            <h1>Find your favorite Superhero!</h1>
+
+            <!-- input form to request heros with name starting with characters input -->
+            <form id="hero-form">
+                <div class="form-group mb-2">
+                    <label for="hero">Hero's Name Starts With:</label>
+                    <input id="heroNameStart" name="nameShort" class="form-control" type="text" 
+                        placeholder="Enter at least 2 characters" />
+                </div>
+
+                <!-- submit button -->
+                <div class="form-group mb-2">
+                    <input id="submit" class="submit-btn" type="submit" value="Get Heros" />
+                </div>
+            </form>
+
+            <div class="col-md-7 offset-md-1" id="hero-container">
+                <!-- display heros here -->
+            </div>
         </div>
-        <section class="hero-selection">
-            <button class="find-hero" type="submit" value="More" name="more">
-                Submit</button>
     </main>
     <script src="api-key.js"></script>
     <script src="superhero.js"></script>
