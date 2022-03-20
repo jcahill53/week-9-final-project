@@ -28,56 +28,41 @@ formEl.addEventListener('submit', function (e) {
     .then(function (data) {
       return data.json();
     })
-    //end of fetch
 
-    //DEFINE THE ARRAY OF HEROS THAT RETURNS FROM THE FETCH
+    //DEFINE THE ARRAY OF BOOKS THAT RETURNS FROM THE FETCH
     .then(function (responseJson) {
-      //return js object from json
-      console.log(responseJson.data);
+      console.log(responseJson);
 
-      //display array of objects returned
       const heroResults = responseJson.data.results;
       console.log(heroResults);
+      console.log(heroResults.length);
 
-      for (let i = 0; i < array.length; i++) {
+      //DEFINE THE FIVE BOOKS THAT WILL DISPLAY ON THE PAGE
+      for (let i = 0; i < heroResults.length; i++) {
 
-          const hero = responseJson.data.results[i];
-          console.log(hero);
+        const heros = responseJson.data.results[i];
+        console.log(heros);
 
-          const heroId = hero.id;
-          const heroName = hero.name;
-          const heroDescr = hero.description;
-          const thumbPath = hero.thumbnail.path
-          const thumbExt = hero.thumbnail.extension
-          const heroThumbnail = `${thumbPath}.${thumbExt}`
+        //DEFINE VARIABLES THAT WILL BE NEEDED TO POPULATE THE PAGE
+        const heroId = heros.id;
+        const heroName = heros.name;
+        const heroDescr = heros.description;
+        const thumbPath = heros.thumbnail.path
+        const thumbExt = heros.thumbnail.extension
+        const heroThumbnail = `${thumbPath}.${thumbExt}`
 
-          console.log(heroId);
-          console.log(heroName);
-          console.log(heroDescr);
-          console.log(heroThumbnail);
+        console.log(heroId);
+        console.log(heroName);
+        console.log(heroDescr);
+        console.log(heroThumbnail);
+
+        //ADD THE FIVE BOOKS TO THE HTML PAGE
 
       }
-      //end of for loop
-
-      // for (const i in heroResults) {
-      //   if (heroResults.hasOwenProperty(i)) {
-      //     let hero = heroResults[i]
-
-      //     console.log(hero);
-      //     const name = hero.name;
-      //     console.log(name);
-      //   }
-      // }
-      //end of for if loop
-
     })
-    //end of then
-
     //CONSOLE A MESSAGE IF THE FETCH IS NOT SUCCESSFUL
     .catch(function () {
       console.log(`No data returned from the fetch request`)
     })
-  //end of catch
-
 });
-//end of event listener
+//end of event listener`
