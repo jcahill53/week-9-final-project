@@ -11,17 +11,22 @@
 
 <body>
     <main>
+        <header>
+            <!-- input background image via css -->
+        </header>
 
-        <div id="container">
+        <nav>
+            <section class="hdr-left">
+                <img class="logo" src="images/marvel2.png" alt="Marvel logo">
+            </section> <!-- end of hdr-left -->
 
-            <h1>Find your favorite Superhero!</h1>
+            <h1>Superhero Search</h1>
 
-            <!-- input form to request heros with name starting with characters input -->
             <form id="hero-form">
                 <div class="form-group mb-2">
                     <label for="hero">Hero's Name Starts With:</label>
-                    <input id="heroNameStart" name="nameShort" class="form-control" type="text" 
-                        placeholder="Enter at least 2 characters" />
+                    <input id="heroNameStart" name="nameShort" class="form-control" type="text"
+                        placeholder="Enter at least 1 characters" required pattern="[a-zA-Z\-]+" minlength="1" title="Enter at least one character. Use only upper case, lower case or hyphens"> />
                 </div>
 
                 <!-- submit button -->
@@ -29,14 +34,21 @@
                     <input id="submit" class="submit-btn" type="submit" value="Get Heros" />
                 </div>
             </form>
+        </nav>
+
+        <body>
+
+            
 
             <div class="col-md-7 offset-md-1" id="hero-container">
                 <!-- display heros here -->
             </div>
-        </div>
+        </body>
+
     </main>
     <script src="api-key.js"></script>
     <script src="superhero.js"></script>
+    <script src="animateImg.js"></script>
 </body>
 
 </html>

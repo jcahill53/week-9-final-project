@@ -3,7 +3,7 @@ const resourceType = `v1/public/characters`
 const API_KEY = '192c597a69f5e5f60181fcd4569e8f79';
 const hash = `07dced18d8feafe4974a0029ce3e1003`
 
-const containerDiv = document.getElementById("container");
+const containerDiv = document.getElementById("hero-container");
 const formEl = document.getElementById("hero-form");
 const heroInput1El = document.getElementById("heroNameStart");
 
@@ -11,6 +11,14 @@ const heroInput1El = document.getElementById("heroNameStart");
 
 formEl.addEventListener('submit', function (e) {
   e.preventDefault();
+
+  const containerPrior = document.querySelector('#hero-container');
+  while (containerPrior.firstChild) {
+    containerPrior.removeChild(containerPrior.firstChild);
+  }
+
+  console.log(containerPrior)
+
 
   const nameStartsWith = heroInput1El.value;
   const orderBy = 'name';
@@ -56,13 +64,43 @@ formEl.addEventListener('submit', function (e) {
         console.log(heroDescr);
         console.log(heroThumbnail);
 
-        //ADD THE FIVE BOOKS TO THE HTML PAGE
+        //ADD THE RESULTS TO THE HTML PAGE
+        const container = document.getElementById("hero-container");
+        console.log(container);
 
+        const heroContent = document.createElement("div");
+        heroContent.setAttribute('class', 'hero-card');
+        console.log(heroContent);
+
+        heroContent.innerHTML =
+          `
+           <div class="picture">
+           <img class="hero-image"
+           src="${heroThumbnail}"
+           alt="Picture of the selected hero">
+           </div>
+          <h2>${heroName}</h2>
+          <p>${heroDescr}</p>`
+
+        container.appendChild(heroContent);
       }
     })
     //CONSOLE A MESSAGE IF THE FETCH IS NOT SUCCESSFUL
     .catch(function () {
       console.log(`No data returned from the fetch request`)
+
+      // const container = document.getElementById("hero-container");
+      // console.log(container);
+
+      // const heroContent = document.createElement("div");
+      // heroContent.setAttribute('class', 'hero-card');
+      // console.log(heroContent);
+
+      // heroContent.innerHTML =
+      //   `<p>No heros matching your request were found</p>`
+
+      // container.appendChild(heroContent);
+
     })
 });
 //end of event listener`
