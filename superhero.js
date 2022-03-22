@@ -1,25 +1,39 @@
-const BASE_URL = `https://gateway.marvel.com:443/`;
-const resourceType = `v1/public/characters`
-const API_KEY = '192c597a69f5e5f60181fcd4569e8f79';
-const hash = `07dced18d8feafe4974a0029ce3e1003`
-
+// Global definition of elements needed for this process
 const containerDiv = document.getElementById("hero-container");
 const formEl = document.getElementById("hero-form");
 const heroInput1El = document.getElementById("heroNameStart");
 
-//Upon submit fetch data from the API and populate the page
-
+//Upon submit move the POW image to the right, fetch data from the API and populate the page
 formEl.addEventListener('submit', function (e) {
   e.preventDefault();
 
+  // delete any hero results from a prior fetch request
   const containerPrior = document.querySelector('#hero-container');
   while (containerPrior.firstChild) {
     containerPrior.removeChild(containerPrior.firstChild);
   }
 
-  console.log(containerPrior)
+  // move Pow image to the right
+  const imgObj = document.getElementById('powImage');
+  console.log(imgObj);
+  imgObj.style.position = 'relative';
+  imgObj.style.left = '0px';
 
+  // Move the image left until it reaches the right side of the page
+  const moveRight = () => {
+    if (imgObj.style.left !== '1100px') {
+      imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
+      requestAnimationFrame(moveRight);
+    }
+  };
 
+  moveRight();
+
+  // Define variables needed to create the URL
+  const BASE_URL = `https://gateway.marvel.com:443/`;
+  const resourceType = `v1/public/characters`
+  const API_KEY = '192c597a69f5e5f60181fcd4569e8f79';
+  const hash = `07dced18d8feafe4974a0029ce3e1003`
   const nameStartsWith = heroInput1El.value;
   const orderBy = 'name';
   const limit = 50;
@@ -37,7 +51,7 @@ formEl.addEventListener('submit', function (e) {
       return data.json();
     })
 
-    //DEFINE THE ARRAY OF BOOKS THAT RETURNS FROM THE FETCH
+    //DEFINE THE ARRAY HEROSS THAT RETURNS FROM THE FETCH
     .then(function (responseJson) {
       console.log(responseJson);
 
@@ -45,7 +59,7 @@ formEl.addEventListener('submit', function (e) {
       console.log(heroResults);
       console.log(heroResults.length);
 
-      //DEFINE THE FIVE BOOKS THAT WILL DISPLAY ON THE PAGE
+      //DEFINE THE HEROS THAT WILL DISPLAY ON THE PAGE
       for (let i = 0; i < heroResults.length; i++) {
 
         const heros = responseJson.data.results[i];
@@ -59,10 +73,10 @@ formEl.addEventListener('submit', function (e) {
         const thumbExt = heros.thumbnail.extension
         const heroThumbnail = `${thumbPath}.${thumbExt}`
 
-        console.log(heroId);
-        console.log(heroName);
-        console.log(heroDescr);
-        console.log(heroThumbnail);
+        // console.log(heroId);
+        // console.log(heroName);
+        // console.log(heroDescr);
+        // console.log(heroThumbnail);
 
         //ADD THE RESULTS TO THE HTML PAGE
         const container = document.getElementById("hero-container");

@@ -26,7 +26,8 @@
                 <div class="form-group mb-2">
                     <label for="hero">Hero's Name Starts With:</label>
                     <input id="heroNameStart" name="nameShort" class="form-control" type="text"
-                        placeholder="Enter at least 1 characters" required pattern="[a-zA-Z\-]+" minlength="1" title="Enter at least one character. Use only upper case, lower case or hyphens"> />
+                        placeholder="Enter at least 1 character" required pattern="[a-zA-Z\-]+" minlength="1"
+                        title="Enter at least one character. Use only upper case, lower case or hyphens"> />
                 </div>
 
                 <!-- submit button -->
@@ -38,7 +39,10 @@
 
         <body>
 
-            
+            <div id = powDiv>
+                <img id="powImage" class="pow" src="images/Pow.jpg" alt="The marvel POW icon">
+            </div>
+
 
             <div class="col-md-7 offset-md-1" id="hero-container">
                 <!-- display heros here -->
@@ -48,7 +52,7 @@
     </main>
     <script src="api-key.js"></script>
     <script src="superhero.js"></script>
-    <script src="animateImg.js"></script>
+
 </body>
 
 </html>

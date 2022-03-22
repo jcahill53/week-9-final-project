@@ -55,6 +55,14 @@ h2 {
     text-align: center;
 }
 
+#powImage {
+    width: 20%;
+    height: 20%;
+    margin-top: 20px;
+
+}
+
+
 #hero-container {
     display: flex;
     flex-direction: row;
