@@ -3,19 +3,36 @@ const containerDiv = document.getElementById("hero-container");
 const formEl = document.getElementById("hero-form");
 const heroInput1El = document.getElementById("heroNameStart");
 
+// Move the image to the right until it reaches the middle of the page
+const imgObj = document.getElementById('powImage');
+console.log(imgObj);
+imgObj.style.position = 'relative';
+imgObj.style.left = '0px';
 
+const moveRight = () => {
+  if (parseInt(imgObj.style.left) < 550) {
+    imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
+    requestAnimationFrame(moveRight);
+  }
+};
+
+//if a favorite hero exists in local storage use that as the input
 const favorite = document.getElementById('favorite');
 console.log(favorite.value)
 const notFavorite = document.getElementById('notFavorite');
 console.log(notFavorite.value)
 
-//if a favorite hero exists in local storage use that as the input
+
 const favoriteName = localStorage.getItem('favoriteHero');
 console.log(favoriteName)
 
-if (favoriteName) { 
+if (favoriteName) {
   heroInput1El.value = favoriteName;
 }
+
+
+
+
 
 
 //Upon submit move the POW image to the right, fetch data from the API and populate the page
@@ -28,36 +45,21 @@ formEl.addEventListener('submit', function (e) {
     containerPrior.removeChild(containerPrior.firstChild);
   }
 
-  //create favorite hero in local storage
-  const nameStarts = heroInput1El.value;
+  //animate image
+  moveRight();
 
-  //set curent hero input as favorite
-  const setFavorite = () => {
-    if ((document.getElementById('favorite').checked)) {
-      localStorage.setItem('favoriteHero', nameStarts);
-    } else {
-      localStorage.setItem('favoriteHero', '')
-    }
-  };
+  //set curent hero input as favorite - to be triggered by event Listener
+const nameStarts = heroInput1El.value;
+
+const setFavorite = () => {
+  if ((document.getElementById('favorite').checked)) {
+    localStorage.setItem('favoriteHero', nameStarts);
+  } else {
+    localStorage.setItem('favoriteHero', '')
+  }
+};
 
   setFavorite();
-
-
-  // Move the image to the right until it reaches the middle of the page
-  const imgObj = document.getElementById('powImage');
-  console.log(imgObj);
-  imgObj.style.position = 'relative';
-  imgObj.style.left = '0px';
-
-  const moveRight = () => {
-    if (parseInt(imgObj.style.left) < 550) {
-      imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
-      requestAnimationFrame(moveRight);
-    }
-
-  };
-
-  moveRight();
 
   // Define variables needed to create the URL
   const BASE_URL = `https://gateway.marvel.com:443/`;
@@ -65,13 +67,8 @@ formEl.addEventListener('submit', function (e) {
   const API_KEY = '192c597a69f5e5f60181fcd4569e8f79';
   const hash = `07dced18d8feafe4974a0029ce3e1003`
 
- //use favoriteName in local storage unless value does not exist
+  //use favoriteName in local storage unless value does not exist
   let nameStartsWith = heroInput1El.value;
-
- 
-
-  
-
 
   const orderBy = 'name';
   const limit = 50;
