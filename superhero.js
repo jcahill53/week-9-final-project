@@ -19,15 +19,25 @@ formEl.addEventListener('submit', function (e) {
   imgObj.style.position = 'relative';
   imgObj.style.left = '0px';
 
-  // Move the image left until it reaches the right side of the page
+  // Move the image left until it reaches the middle of the page
   const moveRight = () => {
-    if (imgObj.style.left !== '1100px') {
+    if (parseInt(imgObj.style.left) < 550) {
       imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
       requestAnimationFrame(moveRight);
     }
+
   };
 
   moveRight();
+
+  //  const moveLeft = () => {
+  //   if (parseInt(imgObj.style.left) > 550) {
+  //     imgObj.style.left = parseInt(imgObj.style.left) - 10 + 'px';
+  //     requestAnimationFrame(moveLeft);
+  //   }
+  //  };
+
+  //  moveLeft();
 
   // Define variables needed to create the URL
   const BASE_URL = `https://gateway.marvel.com:443/`;

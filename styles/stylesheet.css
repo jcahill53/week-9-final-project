@@ -71,7 +71,7 @@ h2 {
 }
 
 .hero-card {
-    width: 23%;
+    width: 30%;
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -85,7 +85,7 @@ h2 {
 }
 
 .hero-image {
-    width: 250px;
-    height: 350px;
+    width: 350px;
+    height: 450px;
     object-fit: contain;
 }

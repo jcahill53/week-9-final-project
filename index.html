@@ -27,12 +27,12 @@
                     <label for="hero">Hero's Name Starts With:</label>
                     <input id="heroNameStart" name="nameShort" class="form-control" type="text"
                         placeholder="Enter at least 1 character" required pattern="[a-zA-Z\-]+" minlength="1"
-                        title="Enter at least one character. Use only upper case, lower case or hyphens"> />
+                        title="Enter at least one character. Use only upper case, lower case or hyphens" onfocus="this.value=''"> 
                 </div>
 
                 <!-- submit button -->
                 <div class="form-group mb-2">
-                    <input id="submit" class="submit-btn" type="submit" value="Get Heros" />
+                    <input id="submit" class="submit-btn" type="submit" value="Get Heros"  />
                 </div>
             </form>
         </nav>
