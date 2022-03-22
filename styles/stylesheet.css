@@ -39,6 +39,12 @@ label {
     font-weight: bold;
 }
 
+.form-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 .submit-btn {
     background-color: #FF5216;
     color: black;
