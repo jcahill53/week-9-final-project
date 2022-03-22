@@ -29,6 +29,12 @@ nav {
     padding: 1%;
 }
 
+.hdr-left {display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+
 label {
     font-weight: bold;
 }
@@ -46,7 +52,7 @@ body {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-family: fantasy;
     color: #FF9E7C;
 }
