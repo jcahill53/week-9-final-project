@@ -3,39 +3,27 @@ const containerDiv = document.getElementById("hero-container");
 const formEl = document.getElementById("hero-form");
 const heroInput1El = document.getElementById("heroNameStart");
 
-// Move the image to the right until it reaches the middle of the page
-const imgObj = document.getElementById('powImage');
-console.log(imgObj);
-imgObj.style.position = 'relative';
-imgObj.style.left = '0px';
-
-const moveRight = () => {
-  if (parseInt(imgObj.style.left) < 550) {
-    imgObj.style.left = parseInt(imgObj.style.left) + 10 + 'px';
-    requestAnimationFrame(moveRight);
-  }
-};
-
 //if a favorite hero exists in local storage use that as the input
 const favorite = document.getElementById('favorite');
-console.log(favorite.value)
 const notFavorite = document.getElementById('notFavorite');
-console.log(notFavorite.value)
-
-
 const favoriteName = localStorage.getItem('favoriteHero');
-console.log(favoriteName)
 
 if (favoriteName) {
   heroInput1El.value = favoriteName;
+} else {
+  console.log(`A favorite does not exist in local storage`)
 }
 
+//set pow image to 0px width and 350px height
+const imgObj = document.getElementById('powImage');
+console.log(imgObj);
+
+imgObj.style.height = "250px";
+imgObj.style.width = "0px";
 
 
 
-
-
-//Upon submit move the POW image to the right, fetch data from the API and populate the page
+//Upon submit expand POW image to the right, fetch data from the API and populate the page
 formEl.addEventListener('submit', function (e) {
   e.preventDefault();
 
@@ -45,19 +33,30 @@ formEl.addEventListener('submit', function (e) {
     containerPrior.removeChild(containerPrior.firstChild);
   }
 
+  // Move the image to the right until it reaches the middle of the page
+
+
+  const expandImage = () => {
+    if (parseInt(imgObj.style.width) < 300) {
+      imgObj.style.width = parseInt(imgObj.style.width) + 10 + 'px';
+      // imgObj.style.width = parseInt(imgObj.style.height) + 10 + 'px';
+      requestAnimationFrame(expandImage);
+    }
+  };
+
   //animate image
-  moveRight();
+  expandImage();
 
   //set curent hero input as favorite - to be triggered by event Listener
-const nameStarts = heroInput1El.value;
+  const nameStarts = heroInput1El.value;
 
-const setFavorite = () => {
-  if ((document.getElementById('favorite').checked)) {
-    localStorage.setItem('favoriteHero', nameStarts);
-  } else {
-    localStorage.setItem('favoriteHero', '')
-  }
-};
+  const setFavorite = () => {
+    if ((document.getElementById('favorite').checked)) {
+      localStorage.setItem('favoriteHero', nameStarts);
+    } else {
+      localStorage.setItem('favoriteHero', '')
+    }
+  };
 
   setFavorite();
 
@@ -66,19 +65,10 @@ const setFavorite = () => {
   const resourceType = `v1/public/characters`
   const API_KEY = '192c597a69f5e5f60181fcd4569e8f79';
   const hash = `07dced18d8feafe4974a0029ce3e1003`
-
-  //use favoriteName in local storage unless value does not exist
   let nameStartsWith = heroInput1El.value;
-
   const orderBy = 'name';
   const limit = 50;
   const url = `${BASE_URL}${resourceType}?nameStartsWith=${nameStartsWith}&orderBy=${orderBy}&limit=${limit}&ts=1&apikey=${API_KEY}&hash=${hash}`;
-
-  // console.log(url);
-  // console.log(containerDiv);
-  // console.log(formEl);
-  // console.log(heroInput1El);
-  // console.log(nameStartsWith);``
 
   // Fetch heros
   fetch(url)
@@ -88,17 +78,17 @@ const setFavorite = () => {
 
     //DEFINE THE ARRAY HEROSS THAT RETURNS FROM THE FETCH
     .then(function (responseJson) {
-      console.log(responseJson);
+      // console.log(responseJson);
 
       const heroResults = responseJson.data.results;
-      console.log(heroResults);
-      console.log(heroResults.length);
+      // console.log(heroResults);
+      // console.log(heroResults.length);
 
       //DEFINE THE HEROS THAT WILL DISPLAY ON THE PAGE
       for (let i = 0; i < heroResults.length; i++) {
 
         const heros = responseJson.data.results[i];
-        console.log(heros);
+        // console.log(heros);
 
         //DEFINE VARIABLES THAT WILL BE NEEDED TO POPULATE THE PAGE
         const heroId = heros.id;
@@ -118,11 +108,11 @@ const setFavorite = () => {
 
         //ADD THE RESULTS TO THE HTML PAGE
         const container = document.getElementById("hero-container");
-        console.log(container);
+        // console.log(container);
 
         const heroContent = document.createElement("div");
         heroContent.setAttribute('class', 'hero-card');
-        console.log(heroContent);
+        // console.log(heroContent);
 
         heroContent.innerHTML =
           `

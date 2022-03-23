@@ -18,12 +18,13 @@
     <nav>
         <section class="hdr-left">
             <img class="logo" src="images/marvel2.png" alt="Marvel logo">
+            <h1>Superhero Search</h1>
         </section> <!-- end of hdr-left -->
 
-        <h1>Superhero Search</h1>
+
 
         <form id="hero-form">
-            <div class="form-group mb-2">
+            <div class="form-group">
                 <label for="heroNameStart">Hero's Name Starts With:</label>
                 <input id="heroNameStart" name="nameShort" class="form-control" type="text"
                     placeholder="Enter at least 1 character" required pattern="[a-zA-Z\-\s]+" minlength="1"
@@ -34,18 +35,18 @@
             <!-- submit button -->
             <div class="form-group">
                 <input id="submit" class="submit-btn" type="submit" value="Get Heros" />
-                <p>Save as your favorite?</p>
-                <form>
-                    <input type="radio" id="favorite" name="fav_hero" value="Yes">
+                <p>Save as default?</p>
+                <form class = 'radio'>
+                    <input type="radio" id="favorite" name="fav_hero" value="Yes" >
                     <label for="favorite">Yes</label>
-                    <input type="radio" id="notFavorite" name="fav_hero" value="No">
-                    <label for="notFavorite">No</label>
+                    <input type="radio" id="notFavorite" name="fav_hero" value="No"checked>
+                    <label for="notFavorite">Clear default</label>
                 </form>
             </div>
     </nav>
     <main>
         <div id=powDiv>
-            <img id="powImage" class="pow  center" src="images/Pow.jpg" alt="The marvel POW icon">
+            <img id="powImage" class="pow  center" src="images/Pow.jpg" alt="The marvel POW icon" >
         </div>
 
 
