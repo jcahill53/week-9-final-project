@@ -115,8 +115,7 @@ formEl.addEventListener('submit', function (e) {
         // console.log(heroContent);
 
         heroContent.innerHTML =
-          `
-           <div class="picture">
+          `<div class="picture">
            <img class="hero-image"
            src="${heroThumbnail}"
            alt="Picture of the selected hero">
