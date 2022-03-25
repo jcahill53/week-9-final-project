@@ -33,7 +33,7 @@ formEl.addEventListener('submit', function (e) {
     containerPrior.removeChild(containerPrior.firstChild);
   }
 
-  // Move the image to the right until it reaches the middle of the page
+  // Move the resize the image so it appears on the page via animation
 
 
   const expandImage = () => {
